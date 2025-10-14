@@ -34,12 +34,6 @@ class _MyHomePageState extends State<MyHomePage> {
       IOSColorPickerController();
 
   @override
-  void dispose() {
-    iosColorPickerController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor,
@@ -47,21 +41,6 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
-              onPressed: () {
-                iosColorPickerController.showNativeIosColorPicker(
-                  darkMode: true,
-                  startingColor: backgroundColor,
-                  onColorChanged: (color) {
-                    setState(() => backgroundColor = color);
-                  },
-                );
-              },
-              child: Text("Native iOS"),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
             ElevatedButton(
               onPressed: () {
                 iosColorPickerController.showIOSCustomColorPicker(

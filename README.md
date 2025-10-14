@@ -10,8 +10,12 @@ For general information about developing packages, see the Dart guide for
 and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
+
 ## Description
-A new Flutter package that provides native iOS Color Picker cloned UI for all platforms, with iOS Native color Picker option for iOS only 
+
+一个纯 Flutter 的 iOS 风格取色器（Color Picker）组件，适用于所有平台（Web、Android、iOS、Windows、macOS、Linux）。不再包含任何原生 iOS 组件调用。
+
+基于 [ios_color_picker](https://github.com/mokhselim/ios_color_picker) 项目修改，移除了原生 iOS 组件调用。
 
 ## Supported Platforms
 
@@ -31,8 +35,6 @@ A new Flutter package that provides native iOS Color Picker cloned UI for all pl
 <img src="https://res.cloudinary.com/dcvoshrrl/image/upload/v1737504183/color_picker/1_p91sih.gif" width="300">
 <img src="https://res.cloudinary.com/dcvoshrrl/image/upload/v1737504212/color_picker/3_zkbdzu.gif" width="300">
 
-
-
 ## Getting Started
 
 This package is easy to integrate into your Flutter application. See the usage section below to get started.
@@ -40,23 +42,7 @@ This package is easy to integrate into your Flutter application. See the usage s
 ## Usage
 
 ```dart
-/// Native iOS Color Picker
-ElevatedButton(
-  onPressed: () {
-    iosColorPickerController.showNativeIosColorPicker(
-      startingColor: backgroundColor,
-      darkMode: true,
-      onColorChanged: (color) {
-        setState(() {
-          backgroundColor = color;
-        });
-      },
-    );
-  },
-  child: Text("Native iOS"),
-),
-
-/// Custom iOS Color Picker (for all platforms)
+// 适用于所有平台的 iOS 风格取色器
 ElevatedButton(
   onPressed: () {
     iosColorPickerController.showIOSCustomColorPicker(
@@ -69,28 +55,6 @@ ElevatedButton(
       context: context,
     );
   },
-  child: Text("Custom iOS for all"),
-),
+  child: Text("Open Color Picker"),
+)
 ```
-## You have to
-Dispose the controller because the streamer, check the example in example/ folder
-```dart
-  IOSColorPickerController iosColorPickerController =
-      IOSColorPickerController();
-
-  @override
-  void dispose() {
-    iosColorPickerController.dispose();
-    super.dispose();
-  }
-
-```
-🧪 Example
-
-Run the app in the example/ folder to explore the plugin.
-
-Additional Information
-
-For more updates and inquiries, connect with me on LinkedIn:
-
-<a href="https://www.linkedin.com/in/mo-kh-selim/"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/LinkedIn_icon.svg/144px-LinkedIn_icon.svg.png" width="32" /> </a>
