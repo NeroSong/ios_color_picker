@@ -70,14 +70,20 @@ class _IosColorPickerState extends State<IosColorPicker> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const SizedBox(
-                        width: 40,
+                        width: 22,
                       ),
-                      Text(
-                        IcpStrings.of(context).titleColors,
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            fontSize: 17,
-                            color: onBackgroundOf(context),
-                            fontWeight: FontWeight.w700),
+                      Expanded(
+                        child: Text(
+                          IcpStrings.of(context).titleColors,
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(
+                                  fontSize: 17,
+                                  color: onBackgroundOf(context),
+                                  fontWeight: FontWeight.w700),
+                        ),
                       ),
                       InkWell(
                         onTap: () => Navigator.pop(context),

@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'iOS 取色器',
       debugShowCheckedModeBanner: false,
       locale: const Locale('zh', 'CN'),
+      // locale: const Locale('en'),
       supportedLocales: const [
         Locale('en'),
         Locale('zh', 'CN'),
