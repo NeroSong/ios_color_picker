@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:ios_color_picker/custom_picker/extensions.dart';
 import 'package:ios_color_picker/custom_picker/pickers/slider_picker/slider_helper.dart';
 import '../../shared.dart';
@@ -56,17 +57,50 @@ class SlidePicker extends StatefulWidget {
 
 class _SlidePickerState extends State<SlidePicker> {
   HSVColor currentHsvColor = const HSVColor.fromAHSV(0.0, 0.0, 0.0, 0.0);
+  final TextEditingController _hexController = TextEditingController();
+
+  void _syncHexFromColor() {
+    final hex = currentHsvColor.toColor().toHex();
+    if (_hexController.text.toUpperCase() != hex.toUpperCase()) {
+      _hexController.value = _hexController.value.copyWith(
+        text: hex,
+        selection: TextSelection.collapsed(offset: hex.length),
+        composing: TextRange.empty,
+      );
+    }
+  }
+
+  void _applyHexInput(String input) {
+    String v = input.trim();
+    if (!v.startsWith('#')) v = '#$v';
+    final reg = RegExp(kCompleteValidHexPattern);
+    if (reg.hasMatch(v)) {
+      final color = HexColor.fromHex(v);
+      setState(() {
+        currentHsvColor = HSVColor.fromColor(color);
+      });
+      widget.onColorChanged(color);
+    }
+  }
 
   @override
   void initState() {
     super.initState();
     currentHsvColor = HSVColor.fromColor(widget.pickerColor);
+    _syncHexFromColor();
   }
 
   @override
   void didUpdateWidget(SlidePicker oldWidget) {
     super.didUpdateWidget(oldWidget);
     currentHsvColor = HSVColor.fromColor(widget.pickerColor);
+    _syncHexFromColor();
+  }
+
+  @override
+  void dispose() {
+    _hexController.dispose();
+    super.dispose();
   }
 
   Widget colorPickerSlider(TrackType trackType) {
@@ -77,6 +111,7 @@ class _SlidePickerState extends State<SlidePicker> {
       (HSVColor color) {
         setState(() => currentHsvColor = color);
         widget.onColorChanged(currentHsvColor.toColor());
+        _syncHexFromColor();
       },
     );
   }
@@ -190,32 +225,56 @@ class _SlidePickerState extends State<SlidePicker> {
           alignment: Alignment.centerRight,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                IcpStrings.of(context).displayP3Hex,
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium
-                    ?.copyWith(color: const Color(0xff007AFF)),
-              ),
-              Container(
-                height: 36,
-                width: 90,
-                margin: const EdgeInsets.only(left: 8),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: valueColorOf(context),
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(8),
-                  ),
-                ),
+              Padding(
+                padding: const EdgeInsets.only(top: 3.0, right: 8.0),
                 child: Text(
-                  currentHsvColor.toColor().toHex(),
+                  IcpStrings.of(context).displayP3Hex,
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium
+                      ?.copyWith(color: const Color(0xff007AFF)),
+                ),
+              ),
+              SizedBox(
+                height: 42,
+                width: 100,
+                child: TextField(
+                  controller: _hexController,
+                  maxLines: 1,
+                  maxLength: 8,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9a-fA-F]')),
+                  ],
+                  textAlign: TextAlign.center,
+                  onSubmitted: _applyHexInput,
+                  onChanged: (t) {
+                    // 仅在输入达到 6 或 8 位时尝试解析
+                    if (t.length == 6 || t.length == 8) {
+                      _applyHexInput(t);
+                    }
+                  },
+                  textInputAction: TextInputAction.done,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      fontSize: 16,
-                      letterSpacing: 1,
-                      color: onBackgroundOf(context),
-                      fontWeight: FontWeight.w600),
+                        fontSize: 16,
+                        letterSpacing: 1,
+                        color: onBackgroundOf(context),
+                        fontWeight: FontWeight.w600,
+                      ),
+                  decoration: InputDecoration(
+                    counterText: '',
+                    isDense: true,
+                    contentPadding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                    filled: true,
+                    fillColor: valueColorOf(context),
+                    border: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(8)),
+                      borderSide: BorderSide.none,
+                    ),
+                    hintText: 'RRGGBB',
+                  ),
                 ),
               ),
             ],
