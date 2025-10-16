@@ -3,6 +3,7 @@ import 'package:ios_color_picker/custom_picker/pickers/area_picker.dart';
 import 'package:ios_color_picker/custom_picker/pickers/grid_picker.dart';
 import 'package:ios_color_picker/custom_picker/pickers/slider_picker/slider_picker.dart';
 import 'package:ios_color_picker/custom_picker/shared.dart';
+import 'package:ios_color_picker/l10n/strings.dart';
 import 'color_observer.dart';
 import 'helpers/cache_helper.dart';
 
@@ -116,7 +117,11 @@ class _PickersSelectorRowState extends State<PickersSelectorRow> {
                         Expanded(
                           child: Center(
                             child: Text(
-                              typeText[index],
+                              index == 0
+                                  ? IcpStrings.of(context).tabGrid
+                                  : index == 1
+                                      ? IcpStrings.of(context).tabSpectrum
+                                      : IcpStrings.of(context).tabSliders,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium

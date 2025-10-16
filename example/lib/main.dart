@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:ios_color_picker/show_ios_color_picker.dart';
 
 void main() {
@@ -10,8 +11,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'iOS Color Picker',
+      title: 'iOS 取色器',
       debugShowCheckedModeBanner: false,
+      locale: const Locale('zh', 'CN'),
+      supportedLocales: const [
+        Locale('en'),
+        Locale('zh', 'CN'),
+        Locale('zh', 'TW'),
+        Locale('zh', 'HK'),
+      ],
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -51,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                 );
               },
-              child: Text("Custom iOS for all"),
+              child: Text("自定义 iOS 取色器"),
             ),
           ],
         ),

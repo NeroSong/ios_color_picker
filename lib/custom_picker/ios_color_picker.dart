@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ios_color_picker/l10n/strings.dart';
 import 'package:ios_color_picker/custom_picker/pickers/slider_picker/slider_helper.dart';
 import 'package:ios_color_picker/custom_picker/pickers_selector_row.dart';
 import 'package:ios_color_picker/custom_picker/shared.dart';
@@ -70,7 +71,7 @@ class _IosColorPickerState extends State<IosColorPicker> {
                       width: 40,
                     ),
                     Text(
-                      'Colors',
+                      IcpStrings.of(context).titleColors,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontSize: 17,
                           color: Colors.white,
@@ -101,7 +102,7 @@ class _IosColorPickerState extends State<IosColorPicker> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 17.0),
                 child: Text(
-                  'OPACITY',
+                  IcpStrings.of(context).opacity,
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontSize: 13, color: Colors.white.withValues(alpha: 0.6)),
                 ),

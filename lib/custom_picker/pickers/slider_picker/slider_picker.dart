@@ -3,6 +3,7 @@ import 'package:ios_color_picker/custom_picker/extensions.dart';
 import 'package:ios_color_picker/custom_picker/pickers/slider_picker/slider_helper.dart';
 import '../../shared.dart';
 import '../../utils.dart';
+import 'package:ios_color_picker/l10n/strings.dart';
 
 class SlidePicker extends StatefulWidget {
   const SlidePicker({
@@ -140,7 +141,8 @@ class _SlidePickerState extends State<SlidePicker> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10.0, vertical: 2),
                 child: Text(
-                  trackType.toString().split('.').last.toUpperCase(),
+                  IcpStrings.of(context)
+                      .trackLabel(trackType.toString().split('.').last),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontSize: 13, color: Colors.white.withValues(alpha: 0.6)),
                 ),
@@ -188,7 +190,7 @@ class _SlidePickerState extends State<SlidePicker> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Text(
-                "Display P3 Hex Color #",
+                IcpStrings.of(context).displayP3Hex,
                 style: Theme.of(context)
                     .textTheme
                     .titleMedium
