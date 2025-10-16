@@ -91,12 +91,14 @@ class _PickersSelectorRowState extends State<PickersSelectorRow> {
                       borderRadius: const BorderRadius.all(Radius.circular(7)),
                       boxShadow: [
                         BoxShadow(
-                          color: onBackgroundOf(context).withValues(alpha: 0.04),
+                          color:
+                              onBackgroundOf(context).withValues(alpha: 0.04),
                           blurRadius: 1,
                           offset: const Offset(0, 3),
                         ),
                         BoxShadow(
-                          color: onBackgroundOf(context).withValues(alpha: 0.12),
+                          color:
+                              onBackgroundOf(context).withValues(alpha: 0.12),
                           blurRadius: 8,
                           offset: const Offset(0, 3),
                         ),

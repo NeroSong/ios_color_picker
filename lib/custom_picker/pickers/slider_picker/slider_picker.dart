@@ -214,74 +214,76 @@ class _SlidePickerState extends State<SlidePicker> {
         ),
     ];
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        if (!widget.showIndicator) const SizedBox(height: 20),
-        ...sliders,
-        const SizedBox(height: 16.0),
-        Align(
-          alignment: Alignment.centerRight,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 3.0, right: 8.0),
-                child: Text(
-                  IcpStrings.of(context).displayP3Hex,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium
-                      ?.copyWith(color: const Color(0xff007AFF)),
-                ),
-              ),
-              SizedBox(
-                height: 42,
-                width: 100,
-                child: TextField(
-                  controller: _hexController,
-                  maxLines: 1,
-                  maxLength: 8,
-                  inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp(r'[0-9a-fA-F]')),
-                  ],
-                  textAlign: TextAlign.center,
-                  onSubmitted: _applyHexInput,
-                  onChanged: (t) {
-                    // 仅在输入达到 6 或 8 位时尝试解析
-                    if (t.length == 6 || t.length == 8) {
-                      _applyHexInput(t);
-                    }
-                  },
-                  textInputAction: TextInputAction.done,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        fontSize: 16,
-                        letterSpacing: 1,
-                        color: onBackgroundOf(context),
-                        fontWeight: FontWeight.w600,
-                      ),
-                  decoration: InputDecoration(
-                    counterText: '',
-                    isDense: true,
-                    contentPadding:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                    filled: true,
-                    fillColor: valueColorOf(context),
-                    border: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(8)),
-                      borderSide: BorderSide.none,
-                    ),
-                    hintText: 'RRGGBB',
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (!widget.showIndicator) const SizedBox(height: 20),
+          ...sliders,
+          const SizedBox(height: 16.0),
+          Align(
+            alignment: Alignment.centerRight,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 3.0, right: 8.0),
+                  child: Text(
+                    IcpStrings.of(context).displayP3Hex,
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium
+                        ?.copyWith(color: const Color(0xff007AFF)),
                   ),
                 ),
-              ),
-            ],
+                SizedBox(
+                  height: 42,
+                  width: 100,
+                  child: TextField(
+                    controller: _hexController,
+                    maxLines: 1,
+                    maxLength: 8,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp(r'[0-9a-fA-F]')),
+                    ],
+                    textAlign: TextAlign.center,
+                    onSubmitted: _applyHexInput,
+                    onChanged: (t) {
+                      // 仅在输入达到 6 或 8 位时尝试解析
+                      if (t.length == 6 || t.length == 8) {
+                        _applyHexInput(t);
+                      }
+                    },
+                    textInputAction: TextInputAction.done,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          fontSize: 16,
+                          letterSpacing: 1,
+                          color: onBackgroundOf(context),
+                          fontWeight: FontWeight.w600,
+                        ),
+                    decoration: InputDecoration(
+                      counterText: '',
+                      isDense: true,
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 8),
+                      filled: true,
+                      fillColor: valueColorOf(context),
+                      border: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8)),
+                        borderSide: BorderSide.none,
+                      ),
+                      hintText: 'RRGGBB',
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-        // const SizedBox(height: 23.0),
-      ],
+          // const SizedBox(height: 23.0),
+        ],
+      ),
     );
   }
 }

@@ -63,41 +63,46 @@ class _IosColorPickerState extends State<IosColorPicker> {
                   8,
                   2,
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const SizedBox(
-                      width: 40,
-                    ),
-                    Text(
-                      IcpStrings.of(context).titleColors,
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          fontSize: 17,
-                          color: onBackgroundOf(context),
-                          fontWeight: FontWeight.w700),
-                    ),
-                    IconButton(
-                      highlightColor: Colors.transparent,
-                      onPressed: () => Navigator.pop(context),
-                      icon: Container(
-                        padding: EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                            color:
-                                Theme.of(context).brightness == Brightness.dark
-                                    ? Color(0xff3A3A3B)
-                                    : Color.fromARGB(255, 236, 236, 236),
-                            shape: BoxShape.circle),
-                        child: Icon(
-                          Icons.close_rounded,
-                          color: Theme.of(context).brightness == Brightness.dark
-                              ? Color(0xffA4A4AA)
-                              : Color.fromARGB(255, 159, 159, 165),
-                          size: 20,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const SizedBox(
+                        width: 40,
+                      ),
+                      Text(
+                        IcpStrings.of(context).titleColors,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            fontSize: 17,
+                            color: onBackgroundOf(context),
+                            fontWeight: FontWeight.w700),
+                      ),
+                      InkWell(
+                        onTap: () => Navigator.pop(context),
+                        child: Container(
+                          padding: EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).brightness ==
+                                      Brightness.dark
+                                  ? Color(0xff3A3A3B)
+                                  : Color.fromARGB(255, 236, 236, 236),
+                              shape: BoxShape.circle),
+                          child: Center(
+                            child: Icon(
+                              Icons.close_rounded,
+                              color: Theme.of(context).brightness ==
+                                      Brightness.dark
+                                  ? Color(0xffA4A4AA)
+                                  : Color.fromARGB(255, 159, 159, 165),
+                              size: 18,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               PickersSelectorRow(
