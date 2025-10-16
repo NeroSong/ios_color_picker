@@ -144,7 +144,8 @@ class _SlidePickerState extends State<SlidePicker> {
                   IcpStrings.of(context)
                       .trackLabel(trackType.toString().split('.').last),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontSize: 13, color: Colors.white.withValues(alpha: 0.6)),
+                      fontSize: 13,
+                      color: onBackgroundOf(context).withValues(alpha: 0.6)),
                 ),
               ),
               Expanded(
@@ -157,15 +158,16 @@ class _SlidePickerState extends State<SlidePicker> {
                       width: 77,
                       margin: const EdgeInsets.only(left: 28),
                       alignment: Alignment.center,
-                      decoration: const BoxDecoration(
-                          color: valueColor,
-                          borderRadius: BorderRadius.all(Radius.circular(8))),
+                      decoration: BoxDecoration(
+                          color: valueColorOf(context),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(8))),
                       child: Text(
                         getColorParams(trackTypes.indexOf(trackType)),
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             fontSize: 16,
                             letterSpacing: 0.6,
-                            color: Colors.white,
+                            color: onBackgroundOf(context),
                             fontWeight: FontWeight.w600),
                       ),
                     ),
@@ -201,9 +203,9 @@ class _SlidePickerState extends State<SlidePicker> {
                 width: 90,
                 margin: const EdgeInsets.only(left: 8),
                 alignment: Alignment.center,
-                decoration: const BoxDecoration(
-                  color: valueColor,
-                  borderRadius: BorderRadius.all(
+                decoration: BoxDecoration(
+                  color: valueColorOf(context),
+                  borderRadius: const BorderRadius.all(
                     Radius.circular(8),
                   ),
                 ),
@@ -212,7 +214,7 @@ class _SlidePickerState extends State<SlidePicker> {
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       fontSize: 16,
                       letterSpacing: 1,
-                      color: Colors.white,
+                      color: onBackgroundOf(context),
                       fontWeight: FontWeight.w600),
                 ),
               ),

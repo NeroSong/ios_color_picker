@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 ///Pickers Components height
 double componentsHeight(BuildContext context) {
@@ -18,10 +19,43 @@ enum ColorsType {
   hslWithSaturation,
 }
 
+// Legacy dark palette (kept for backward compatibility). Prefer the *_Of(context) getters below.
 const Color backgroundColor = Color(0xff232421);
 const Color valueColor = Color(0xff1C1C1E);
 const Color sliderColor = Color(0xff38393B);
 const Color selectedSliderColor = Color(0xff6F6F73);
+
+// Light palette
+const Color _lightBackground = Color(0xFFffffff);
+const Color _lightValue = Color(0xFFEDEDF1);
+const Color _lightSlider = Color.fromARGB(255, 236, 236, 236);
+const Color _lightSelectedSlider = Color(0xFFffffff);
+
+// Text colors on surfaces
+Color onBackgroundOf(BuildContext context) {
+  final isDark = Theme.of(context).brightness == Brightness.dark;
+  return isDark ? const Color(0xFFFFFFFF) : const Color(0xFF000000);
+}
+
+Color backgroundColorOf(BuildContext context) {
+  final isDark = Theme.of(context).brightness == Brightness.dark;
+  return isDark ? backgroundColor : _lightBackground;
+}
+
+Color valueColorOf(BuildContext context) {
+  final isDark = Theme.of(context).brightness == Brightness.dark;
+  return isDark ? valueColor : _lightValue;
+}
+
+Color sliderColorOf(BuildContext context) {
+  final isDark = Theme.of(context).brightness == Brightness.dark;
+  return isDark ? sliderColor : _lightSlider;
+}
+
+Color selectedSliderColorOf(BuildContext context) {
+  final isDark = Theme.of(context).brightness == Brightness.dark;
+  return isDark ? selectedSliderColor : _lightSelectedSlider;
+}
 
 enum TrackType {
   hue,

@@ -130,9 +130,12 @@ class _HistoryColorsState extends State<HistoryColors> {
                             width: 30,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: Colors.white.withValues(alpha: 0.16),
+                              color: Theme.of(context).brightness ==
+                                      Brightness.dark
+                                  ? Colors.white.withValues(alpha: 0.16)
+                                  : Colors.grey.withValues(alpha: 0.16),
                             ),
-                            child: const Icon(
+                            child: Icon(
                               Icons.add,
                               color: Color(0xffB0B0BD),
                             ),
@@ -244,8 +247,13 @@ class _HistoryColorsState extends State<HistoryColors> {
                   maxVisibleDots: 11,
                   spacing: 10,
                   // verticalOffset: 18,
-                  dotColor: Colors.white.withValues(alpha: 0.3),
-                  activeDotColor: Colors.white,
+                  dotColor: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.white.withValues(alpha: 0.3)
+                      : Colors.black.withValues(alpha: 0.2),
+                  activeDotColor:
+                      Theme.of(context).brightness == Brightness.dark
+                          ? Colors.white
+                          : Colors.black.withValues(alpha: 0.4),
                 ),
               ),
             )

@@ -108,19 +108,21 @@ class TrackPainter extends CustomPainter {
   const TrackPainter(
     this.trackType,
     this.hsvColor,
-    this.small,
-  );
+    this.small, {
+    this.chessBaseColor,
+  });
 
   final TrackType trackType;
   final HSVColor hsvColor;
   final bool small;
+  final Color? chessBaseColor;
 
   @override
   void paint(Canvas canvas, Size size) {
     final Rect rect = Offset.zero & size;
     if (trackType == TrackType.alpha) {
       final Size chessSize = Size(size.height / 4, size.height / 4);
-      Paint chessPaintB = Paint()..color = backgroundColor;
+      Paint chessPaintB = Paint()..color = chessBaseColor ?? backgroundColor;
       Paint chessPaintW = Paint()..color = Colors.white;
       List.generate((size.height / chessSize.height).round(), (int y) {
         List.generate((size.width / chessSize.width).round(), (int x) {

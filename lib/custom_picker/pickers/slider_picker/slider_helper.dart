@@ -132,6 +132,7 @@ class ColorPickerSlider extends StatelessWidget {
                 trackType,
                 hsvColor,
                 small,
+                chessBaseColor: backgroundColorOf(context),
               )),
             ),
           ),

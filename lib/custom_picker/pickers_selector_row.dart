@@ -49,7 +49,7 @@ class _PickersSelectorRowState extends State<PickersSelectorRow> {
           padding: const EdgeInsets.all(2),
           width: double.infinity,
           decoration: BoxDecoration(
-              color: sliderColor,
+              color: sliderColorOf(context),
               borderRadius: const BorderRadius.all(Radius.circular(9))),
           child: Stack(
             alignment: Alignment.center,
@@ -67,7 +67,7 @@ class _PickersSelectorRowState extends State<PickersSelectorRow> {
                           Container(
                               height: 16,
                               width: 1,
-                              color: const Color(0xffCFCFD5)
+                              color: onBackgroundOf(context)
                                   .withValues(alpha: 0.3))
                         else
                           const SizedBox(height: 16, width: 1),
@@ -87,16 +87,16 @@ class _PickersSelectorRowState extends State<PickersSelectorRow> {
                   width: ((maxWidth(context) - 32) / 3),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                      color: selectedSliderColor,
+                      color: selectedSliderColorOf(context),
                       borderRadius: const BorderRadius.all(Radius.circular(7)),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.04),
+                          color: onBackgroundOf(context).withValues(alpha: 0.04),
                           blurRadius: 1,
                           offset: const Offset(0, 3),
                         ),
                         BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.12),
+                          color: onBackgroundOf(context).withValues(alpha: 0.12),
                           blurRadius: 8,
                           offset: const Offset(0, 3),
                         ),
@@ -126,7 +126,7 @@ class _PickersSelectorRowState extends State<PickersSelectorRow> {
                                   .textTheme
                                   .bodyMedium
                                   ?.copyWith(
-                                    color: Colors.white,
+                                    color: onBackgroundOf(context),
                                     fontSize: 13,
                                     fontWeight: typeIndex == index
                                         ? FontWeight.w700
