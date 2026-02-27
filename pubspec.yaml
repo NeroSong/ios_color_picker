@@ -17,7 +17,7 @@ dependencies:
   super_tooltip:
     git:
       url: https://github.com/bensonarafat/super_tooltip.git
-      tag: v2.1.0
+      ref: v2.1.0
 
 dev_dependencies:
   flutter_test:
